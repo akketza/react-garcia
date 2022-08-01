@@ -17,7 +17,7 @@ const resta = () => {
     return (
     <div>
         <button onClick={resta}>-</button>
-        <span>{count}</span>
+            <span>{count}</span>
         <button onClick={sumar}>+</button>
         <button onClick={onAdd}>comprar</button>
     </div>
