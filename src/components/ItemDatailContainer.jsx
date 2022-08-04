@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { data } from '../mock/FakeApi'
 import ItemDetail from './ItemDetail'
+import {useParams} from'react-router-dom'
 
 const ItemDatailContainer = () => {
     const[producto, setProducto]= useState({}) 
     const[loading, setLoading]= useState(true)
+    const { id } = useParams()
     useEffect(()=>{
         data
-        .then((res)=> setProducto(res.find((item)=>item.id === '03')))
+        .then((res)=> setProducto(res.find((item)=>item.id === id )))
         .catch((error)=> console.log(error))
         .finally(()=> setLoading(false))
     }, [])

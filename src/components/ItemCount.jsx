@@ -16,10 +16,10 @@ const resta = () => {
 
     return (
     <div>
-        <button onClick={resta}>-</button>
+        <button className='btn btn-danger' onClick={resta}>-</button>
             <span>{count}</span>
-        <button onClick={sumar}>+</button>
-        <button onClick={onAdd}>comprar</button>
+        <button className='btn btn-success' onClick={sumar}>+</button>
+        <button className='btn btn-warning' onClick={onAdd}>Agregar al carrito</button>
     </div>
          
   )

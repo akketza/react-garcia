@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react"
-import ItemCount from "./ItemCount"
 import ItemList from "./ItemList"
 import { data } from "../mock/FakeApi"
+import {useParams} from'react-router-dom'
 
 const ItemListContainer = (props) => {
     const [listaProductos, setListaProductos]=useState([])
     const [loading, setLoading]=useState(true)
-    const onAdd = () => {
-        console.log('lo agregaste al carrito mi rey')
-    }
+    const { category } = useParams()
+
 
         useEffect(()=>{
-            console.log('soy el useEffect')
             data
-            .then((res)=>setListaProductos(res))
+            .then((res) => {
+                if (!category) {
+                  setListaProductos(res)
+                } else {
+                  setListaProductos(res.filter((item) => item.category === category));
+                }
+              })
             .catch((error) =>console.log(error))
            .finally(()=>setLoading(false))
-        }, [])
+        }, [category])
 
-        console.log(listaProductos)
+        console.log(data)
 
     return (
         <div>
         <h3 className="greeting">{props.greeting}</h3>
-        <ItemCount initial={1} stock={15} onAdd={onAdd}/>
         {loading ? <p>Cargando...</p> :<ItemList listaProductos={listaProductos}/>}
         
         </div>
