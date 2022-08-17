@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ItemList from "./ItemList"
-import { data } from "../mock/FakeApi"
 import {useParams} from'react-router-dom'
+import { collection, getDocs, query, where, getFirestore } from "firebase/firestore"
 
 const ItemListContainer = (props) => {
     const [listaProductos, setListaProductos]=useState([])
@@ -10,19 +10,30 @@ const ItemListContainer = (props) => {
 
 
         useEffect(()=>{
-            data
-            .then((res) => {
-                if (!category) {
-                  setListaProductos(res)
-                } else {
-                  setListaProductos(res.filter((item) => item.category === category));
-                }
-              })
-            .catch((error) =>console.log(error))
-           .finally(()=>setLoading(false))
+          const db = getFirestore()
+
+          const productsCollection = collection(db, 'items')
+          if(category){
+            const q = query(productsCollection, where('category', '==', category))
+            
+            getDocs(q)
+            .then((snapshot) => {
+              setListaProductos(snapshot.docs.map((doc)=>({...doc.data(), id: doc.id})))
+            }).catch((error) => {console.log(error)})
+            .finally(() => {
+              setLoading(false)
+            })
+          } else{
+            getDocs(productsCollection)
+            .then((snapshot) => {
+              setListaProductos(snapshot.docs.map((doc)=>({...doc.data(), id: doc.id})))
+            }).catch((error) => {console.log(error)})
+            .finally(() => {
+              setLoading(false)
+            })
+          }
         }, [category])
 
-        console.log(data)
 
     return (
         <div>

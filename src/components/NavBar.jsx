@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import CartWidget from './CartWidget'
 import { useCart } from '../context/CartContex'
+import Categories from './Categories'
 
 const NavBar = () => {
  const {cart} = useCart()
@@ -21,9 +22,10 @@ const NavBar = () => {
         <li className="nav-item">
           <Link className="nav-link" to='/productos'>CDS</Link>
         </li>
+      
         <li className="nav-item dropdown">
           <p className="nav-link dropdown-toggle" to='/productos' role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             Categorias
+           
           </p>
           <ul className="dropdown-menu">
             <li><Link className="dropdown-item" to='/category/rap'>RAP</Link></li>
@@ -31,8 +33,12 @@ const NavBar = () => {
             <li><Link className="dropdown-item" to='/category/rockinternacional'>ROCK INTERNACIONAL</Link></li>
             <li><Link className="dropdown-item" to='/category/ryb'>R&B</Link></li>
           </ul>
-          <li><CartWidget/></li>
+         
         </li>
+
+        <Categories/>
+        <CartWidget/>
+          
       </ul>
     </div>
   </div>

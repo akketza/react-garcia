@@ -8,8 +8,26 @@ import {BrowserRouter, Routes, Route,} from 'react-router-dom';
 import Home from './pages/Home';
 import {CartProvider} from './context/CartContex'
 import Cart from './view/Cart'
+import { useEffect } from 'react';
+import {doc, getDoc, getFirestore} from 'firebase/firestore';
 
 function App() {
+
+// useEffect(() => {
+//   const db = getFirestore()
+
+//   const macRef = doc(db, 'items', 'tPRlaN27QDmptQZIgCup')
+//   getDoc(macRef)
+//   .then((snapshot) => {
+//     if(snapshot.exists()){
+//       console.log(snapshot.data())
+//       console.log(snapshot.id)
+//     }
+//   })
+//   .catch((error) => console.error(error))
+// }, [])
+
+
   return (
     <CartProvider>
       <BrowserRouter>

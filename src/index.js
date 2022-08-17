@@ -3,6 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAagQW_QrpEcvfjoOPxD5sgBdxxlxHkQ1A",
+    authDomain: "coderhouse-eccomerce-f98f1.firebaseapp.com",
+    projectId: "coderhouse-eccomerce-f98f1",
+    storageBucket: "coderhouse-eccomerce-f98f1.appspot.com",
+    messagingSenderId: "312253677679",
+    appId: "1:312253677679:web:2f222bdc18cbe60616cd9a"
+  };
+
+
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
